@@ -2,6 +2,8 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+
+# mysql配置
 HOSTNAME = "127.0.0.1"
 PORT = 3306
 USERNAME = "root"
@@ -33,7 +35,6 @@ def query_user():
     user = User.query.get(1)  #按照主键查找,一条条查询
     print(f'{user.id}:{user.username}:{user.password}')
     users = User.query.filter_by(username='testuser')  #按照条件查找
-
     return 'success'
 
 @app.route('/user/update')
