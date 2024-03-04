@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
 app = Flask(__name__)
 
@@ -13,7 +14,7 @@ app.config[
     'SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://{USERNAME}:{PASSWORD}@{HOSTNAME}:{PORT}/{DATABASE}?charset=utf8mb4"
 
 db = SQLAlchemy(app)
-
+migrate = Migrate(app, db)
 
 class User(db.Model):
     __tablename__ = 'user'
@@ -61,8 +62,6 @@ def delete_user():
     db.session.commit()
     return 'success'
 
-# with app.app_context():
-#     db.create_all()
 
 @app.route('/')
 def hello_world():  # put application's code here
