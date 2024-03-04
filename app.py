@@ -19,7 +19,18 @@ class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.String(100), nullable=False)
+    name = db.Column(db.String(100), nullable=False)
     password = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(100), nullable=False)
+    role = db.Column(db.String(100), nullable=False)
+
+class Forum(db.Model):
+    __tablename__ = 'forum'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    title  = db.Column(db.String(100), nullable=False)
+    content = db.Column(db.Text, nullable=False)
+    creator_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    author = db.relationship('User', backref='forums')
 
 
 @app.route('/user/add')
