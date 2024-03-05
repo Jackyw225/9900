@@ -6,3 +6,13 @@ PASSWORD = "jackyWU0225"
 DATABASE = "9900_demo"
 URI = f"mysql+pymysql://{USERNAME}:{PASSWORD}@{HOSTNAME}:{PORT}/{DATABASE}?charset=utf8mb4"
 SQLALCHEMY_DATABASE_URI = URI
+
+
+# unsw_comp9900@163.com
+# unsw_comp9900HD
+MAIL_SERVER = 'smtp.163.com'
+MAIL_USE_SSL = True
+MAIL_PORT = 465
+MAIL_USERNAME = 'unsw_comp9900@163.com'
+MAIL_PASSWORD = 'JJKPEZRWLLZNAALQ'
+MAIL_DEFAULT_SENDER = 'unsw_comp9900@163.com'
