@@ -1,10 +1,12 @@
-from flask import Blueprint, render_template, jsonify
+from flask import Blueprint, render_template, jsonify, redirect
 from exts import mail, db
 from flask_mail import Message
 from flask import request
 import random
 import string
 from models import UserModel, CaptchaModel
+from form import RegisterForm
+from werkzeug.security import generate_password_hash
 
 bp = Blueprint('user', __name__, url_prefix='/user')
 
@@ -14,9 +16,23 @@ def login():
     pass
 
 
-@bp.route('/register')
+@bp.route('/register', methods=['GET', 'POST'])
 def register():
-    return render_template('register.html')
+    if request.method == 'GET':
+        return render_template('register.html')
+    else:
+        form = RegisterForm(register.form)
+        if form.validate():
+            email = form.email.data
+            name = form.name.data
+            password = form.password.data
+            user_info = UserModel(email=email, name=name, password=generate_password_hash(password))
+            db.session.add(user_info)
+            db.session.commit()
+            return redirect('user/login')
+        else:
+            return 'fail'
+
 
 
 @bp.route('/register/captcha')

@@ -32,22 +32,16 @@
             },
             methods: {
                 register() {
-                    // 注册逻辑
-                    console.log('Registering with:', this.name, this.email, this.password);
+                    // Implement registration logic here
                 },
                 getCaptcha() {
-                    // 获取验证码逻辑
-                    console.log('Getting captcha for email:', this.email);
-                    // 发送 AJAX 请求到后端获取验证码
-                    axios.get('/register/captcha', { params: { email: this.email } })
-                        .then(response => {
-                            console.log('Captcha sent successfully');
-                            alert('success'); // 在发送验证码成功后弹出提示窗口
-                        })
-                        .catch(error => {
-                            console.error('Failed to send captcha:', error);
-                            // 处理错误，如果需要的话
-                        });
+                    alert('Success');
+                    const email = encodeURIComponent(this.email); // Encode email for URL
+                    const url = `http://127.0.0.1:5000/user/register/captcha?email=${email}`;
+                    // Now you can do something with the constructed URL, like opening it in a new tab
+                    console.log('Captcha URL:', url);
+                    // Or you can directly open it in a new tab
+                    window.open(url, '_blank');
                 }
             }
         });
