@@ -1,9 +1,9 @@
 
 HOSTNAME = "127.0.0.1"
-PORT = '3306'
+PORT = '33062'
 USERNAME = "root"
 PASSWORD = "jackyWU0225"
-DATABASE = "9900_demo"
+DATABASE = "9900_dadaemo"
 URI = f"mysql+pymysql://{USERNAME}:{PASSWORD}@{HOSTNAME}:{PORT}/{DATABASE}?charset=utf8mb4"
 SQLALCHEMY_DATABASE_URI = URI
 
