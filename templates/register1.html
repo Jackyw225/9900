@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='./css/register_style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id="app" class="container">
+        <h1 class="title">LMS</h1>
+        <div class="register-form">
+            <input type="text" v-model="name" placeholder="Name">
+            <input type="email" v-model="email" placeholder="Email">
+            <input type="captcha" v-model="captcha" placeholder="captcha">
+            <input type="password" v-model="password" placeholder="Password">
+            <button @click="register" class="register-button">Register</button>
+            <button @click="getCaptcha" class="register-button">Get Captcha</button>
+            <a href="login.html" class="login-link">Already have an account? Login</a>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                name: '',
+                email: '',
+                captcha: '',
+                password: ''
+            },
+            methods: {
+                register() {
+                    axios.post('http://127.0.0.1:5000/user/register', {
+                        name: this.name,
+                        email: this.email,
+                        captcha: this.captcha,
+                        password: this.password
+                    })
+                    .then(response => {
+                        alert('Registration successful');
+                        console.log(response.data);
+                        // Redirect to login page
+                        window.location.href = 'login.html';
+                    })
+                    .catch(error => {
+                        alert('Registration failed');
+                        console.error(error.response.data);
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>
