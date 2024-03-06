@@ -6,6 +6,7 @@
     <title>Register Page</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='./css/register_style.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <div id="app" class="container">
@@ -32,16 +33,22 @@
             },
             methods: {
                 register() {
-                    // Implement registration logic here
-                },
-                getCaptcha() {
-                    alert('Success');
-                    const email = encodeURIComponent(this.email); // Encode email for URL
-                    const url = `http://127.0.0.1:5000/user/register/captcha?email=${email}`;
-                    // Now you can do something with the constructed URL, like opening it in a new tab
-                    console.log('Captcha URL:', url);
-                    // Or you can directly open it in a new tab
-                    window.open(url, '_blank');
+                    axios.post('http://127.0.0.1:5000/user/register', {
+                        name: this.name,
+                        email: this.email,
+                        captcha: this.captcha,
+                        password: this.password
+                    })
+                    .then(response => {
+                        alert('Registration successful');
+                        console.log(response.data);
+                        // Redirect to login page
+                        window.location.href = 'login.html';
+                    })
+                    .catch(error => {
+                        alert('Registration failed');
+                        console.error(error.response.data);
+                    });
                 }
             }
         });

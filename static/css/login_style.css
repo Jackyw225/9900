@@ -1,0 +1,71 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.container {
+  text-align: center;
+}
+
+.title {
+  color: blue;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.login-form {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login-form input {
+  width: calc(100% - 22px); /* 减去边框和内边距的宽度 */
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box; /* 确保边框和内边距包含在宽度内 */
+}
+
+button, .register-button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  text-align: center;
+  display: inline-block;
+  box-sizing: border-box; /* 确保边框和内边距包含在宽度内 */
+}
+
+.login-button {
+  background-color: #007bff;
+  color: white;
+}
+
+.register-button {
+  background-color: #ffc107;
+  color: white;
+  text-decoration: none; /* 移除链接的下划线 */
+}
+
+.register-button:hover {
+  background-color: darkorange;
+  color: white;
+}
+
+.forgot-password {
+  display: block;
+  margin-top: 10px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+
+

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="login_style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id="app" class="container">
+        <h1 class="title">LMS</h1>
+        <div class="login-form">
+            <input type="email" v-model="email" placeholder="Email">
+            <input type="password" v-model="password" placeholder="Password">
+            <button @click="login" class="login-button">Login</button>
+            <a href="register.html" class="register-button">Register</a>
+            <a href="#" class="forgot-password">Forgot Password?</a>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                email: '',
+                password: ''
+            },
+            methods: {
+                login() {
+                    axios.post('http://localhost:5000/api/login', {
+                        email: this.email,
+                        password: this.password
+                    })
+                    .then(response => {
+                        alert('Login successful');
+                        console.log(response.data);
+                        // Redirect to another page or perform other actions
+                    })
+                    .catch(error => {
+                        alert('Login failed');
+                        console.error(error.response.data);
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>
