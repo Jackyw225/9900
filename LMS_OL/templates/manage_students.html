@@ -1,0 +1,28 @@
+<!-- manage_students.html -->
+<html>
+<head>
+    <title>Manage Students in {{ course.name }}</title>
+</head>
+<body>
+    <h1>Manage Students in {{ course.name }}</h1>
+
+    <!-- 显示学生名单 -->
+    <ul>
+        {% for student in students %}
+        <li>
+            {{ student.username }}
+            <!-- 删除学生按钮 -->
+            <a href="{{ url_for('delete_student', course_id=course.id, student_id=student.id) }}">Delete</a>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <!-- 添加学生的表单 -->
+    <form action="{{ url_for('add_student', course_id=course.id) }}" method="post">
+        <input type="text" name="student_username" placeholder="Enter student username" required>
+        <input type="submit" value="Add Student">
+    </form>
+
+    <a href="{{ url_for('mycourse') }}">Back to My Courses</a>
+</body>
+</html>
